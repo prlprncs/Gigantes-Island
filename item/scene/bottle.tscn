@@ -1,0 +1,99 @@
+[gd_scene load_steps=14 format=3 uid="uid://bnuta160m0llx"]
+
+[ext_resource type="Script" path="res://scene/box.gd" id="1_d726a"]
+[ext_resource type="Resource" uid="uid://bucgjj0sojj27" path="res://item/items/bottle.tres" id="2_wi7vf"]
+[ext_resource type="Script" path="res://inventory/slot_data.gd" id="3_cn5kd"]
+[ext_resource type="PackedScene" uid="uid://gp46cxid0mlq" path="res://item/item_asset/bottle.glb" id="4_hiq4v"]
+
+[sub_resource type="Resource" id="Resource_1xyq4"]
+script = ExtResource("3_cn5kd")
+item_data = ExtResource("2_wi7vf")
+quantity = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_q8xof"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d2rmr"]
+albedo_color = Color(0, 0.529412, 0.533333, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0gap0"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gdc46"]
+size = Vector3(1.08846, 1.19515, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3ltwr"]
+radius = 1.40401
+
+[sub_resource type="Animation" id="Animation_gnx7e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bottle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.785398, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h8adi"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bottle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.39299, 0), Vector3(0, -0.266826, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_71vgt"]
+_data = {
+"RESET": SubResource("Animation_gnx7e"),
+"new_animation": SubResource("Animation_h8adi")
+}
+
+[node name="shell" type="StaticBody3D"]
+transform = Transform3D(1.24361, 0, 0, 0, 1.24361, 0, 0, 0, 1.24361, 1.98114, 0.0125475, -0.237385)
+collision_layer = 0
+script = ExtResource("1_d726a")
+slot_data = SubResource("Resource_1xyq4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102653, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_q8xof")
+surface_material_override/0 = SubResource("StandardMaterial3D_d2rmr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0gap0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_gdc46")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_3ltwr")
+
+[node name="bottle" parent="." instance=ExtResource("4_hiq4v")]
+transform = Transform3D(0.293616, 0, 0.293616, 0, 0.415235, 0, -0.293616, 0, 0.293616, -0.00874686, -0.163326, -0.0261397)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_71vgt")
+}
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

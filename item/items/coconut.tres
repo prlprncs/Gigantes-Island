@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dvnwl8ybbh1um"]
+
+[ext_resource type="Script" path="res://item/Item_Data.gd" id="1_nlvhj"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ptpbf"]
+load_path = "res://.godot/imported/item.webp-3222e7f58c763f6fea95007211803426.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dt6a"]
+atlas = SubResource("CompressedTexture2D_ptpbf")
+region = Rect2(1158, 165, 711, 720)
+
+[resource]
+script = ExtResource("1_nlvhj")
+name = ""
+description = ""
+stackable = false
+texture = SubResource("AtlasTexture_6dt6a")
