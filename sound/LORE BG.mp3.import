@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cyba648c7ms5m"
+path="res://.godot/imported/LORE BG.mp3-a2a85e02228bd5e0f543b2c0bb27d9d5.mp3str"
+
+[deps]
+
+source_file="res://sound/LORE BG.mp3"
+dest_files=["res://.godot/imported/LORE BG.mp3-a2a85e02228bd5e0f543b2c0bb27d9d5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

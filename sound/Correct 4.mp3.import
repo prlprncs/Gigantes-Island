@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dghh0fb7nbfab"
+path="res://.godot/imported/Correct 4.mp3-35496b174193e8488e23361eff9ad309.mp3str"
+
+[deps]
+
+source_file="res://sound/Correct 4.mp3"
+dest_files=["res://.godot/imported/Correct 4.mp3-35496b174193e8488e23361eff9ad309.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
