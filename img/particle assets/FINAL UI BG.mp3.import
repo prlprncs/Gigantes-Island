@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ucsuxw720u0u"
+path="res://.godot/imported/FINAL UI BG.mp3-153ac3c6c5672db97a7a0bc59c2d73d4.mp3str"
+
+[deps]
+
+source_file="res://img/FINAL UI BG.mp3"
+dest_files=["res://.godot/imported/FINAL UI BG.mp3-153ac3c6c5672db97a7a0bc59c2d73d4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
